@@ -1,2 +1,2 @@
 # Advent-of-Code-Template_CSharp
-This project a console applicaton meant to be a starting point for a new Advent of Code year. Just clonse it and start solving!
+This project is a console application meant to be a starting point for a new Advent of Code year. Just clone it and start solving!
