@@ -15,10 +15,12 @@ public static class Program
             if (input.Equals("e", StringComparison.OrdinalIgnoreCase)) break;
             if (!int.TryParse(input, out var day) || day is < 1 or > 25) continue;
             
-            Console.WriteLine("TEST INPUTS:");
+            Console.WriteLine("TEST(S):");
             (string p1, string p2) answer;
             foreach (var testInput in solutions[day].testInputs)
             {
+                if (string.IsNullOrWhiteSpace(testInput)) continue;
+                
                 answer = solutions[day].Solve(testInput);
                 
                 Console.WriteLine($"""
@@ -28,7 +30,7 @@ public static class Program
                                    """);
             }
             
-            Console.WriteLine("PUZZLE INPUT:");
+            Console.WriteLine("PUZZLE:");
             var projectDirectory = Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.FullName;
             var filePath = Path.Join(projectDirectory, "inputs", $"d{day}.txt");
 
@@ -39,6 +41,8 @@ public static class Program
             }
             
             var puzzleInput = new StreamReader(filePath).ReadToEnd();
+            if (string.IsNullOrWhiteSpace(puzzleInput)) continue;
+            
             answer = solutions[day].Solve(puzzleInput);
             
             Console.WriteLine($"""
