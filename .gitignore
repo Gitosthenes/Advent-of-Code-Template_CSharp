@@ -1,4 +1,4 @@
-# Ignore test and pussle inputs
+# Ignore test and puzzle inputs
 inputs/
 Solutions.cs
 TestInputs.cs
