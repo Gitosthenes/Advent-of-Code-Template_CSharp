@@ -15,7 +15,7 @@ public static class Program
             if (input.Equals("e", StringComparison.OrdinalIgnoreCase)) break;
             if (!int.TryParse(input, out var day) || day is < 1 or > 25) continue;
             
-            Console.WriteLine("TEST(S):");
+            Console.WriteLine("TEST(s):");
             (string p1, string p2) answer;
             foreach (var testInput in solutions[day].testInputs)
             {
@@ -23,13 +23,14 @@ public static class Program
                 
                 answer = solutions[day].Solve(testInput);
                 
-                Console.WriteLine($"""
-                                   Part 1: {answer.p1}
-                                   Part 2: {answer.p2}
-                                   -----
-                                   """);
+                if (!string.IsNullOrWhiteSpace(answer.p1))
+                    Console.WriteLine($"Part 1: {answer.p1}");
+                
+                if (!string.IsNullOrWhiteSpace(answer.p2))
+                    Console.WriteLine($"Part 2: {answer.p2}");
             }
             
+            Console.WriteLine("-------");
             Console.WriteLine("PUZZLE:");
             var projectDirectory = Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.FullName;
             var filePath = Path.Join(projectDirectory, "inputs", $"d{day}.txt");
@@ -45,11 +46,11 @@ public static class Program
             
             answer = solutions[day].Solve(puzzleInput);
             
-            Console.WriteLine($"""
-                               Part 1: {answer.p1}
-                               Part 2: {answer.p2}
-                               -----
-                               """);
+            if (!string.IsNullOrWhiteSpace(answer.p1))
+                Console.WriteLine($"Part 1: {answer.p1}");
+                
+            if (!string.IsNullOrWhiteSpace(answer.p2))
+                Console.WriteLine($"Part 2: {answer.p2}");
         }
         
         Console.WriteLine("Exiting...");
